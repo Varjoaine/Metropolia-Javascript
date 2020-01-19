@@ -1,0 +1,132 @@
+@charset "UTF-8";
+/* CSS Document */
+
+* {
+	
+	box-sizing: border-box;
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0;
+
+}
+
+body {
+  font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, 'sans-serif';
+	
+}
+
+
+:root {
+	--main-bg-color: rgb(147,10,199);
+	
+}
+
+#triangle {
+	
+	width: 0;
+	height: 0;
+	border-bottom: 30vh solid #00E754;
+	/*border-right: 100em solid transparent;*/
+	border-right: 10vw solid transparent;	
+	/*border-left: 10vh solid violet;*/
+	
+	margin:0;
+	margin-bottom: 100em;
+	
+}
+
+nav {
+	/*width: 100%;*/
+	display:flex;
+	position:sticky;
+	top:0;
+	justify-content: space-between;
+	padding: 4vh 2vh;
+	background-color: #ffffff;
+	
+	
+}
+
+a {
+   text-decoration: none;
+}
+
+nav li {
+	display: inline-block;
+	padding-right: 10vh;
+	padding-left: 5vh;
+	font-size:20px;
+	
+	
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#showcase {
+	display: flex;
+	height: 30vh;
+	
+}
+
+#showcase-logoarea {
+	flex:4;
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-item: center;
+	background-color: #00E754;
+	text-align: center;
+	color: #ffffff;
+}
+
+#showcase-imgarea {
+	flex:6;
+	background: url("../img/black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg") no-repeat center center/cover;
+}
+
+.info-area {
+	display-flex:flex;
+	justify-content: center;
+	align-item: center;
+	
+}
+
+.info-text {
+	text-align: center;
+	padding: 10vh 20vh;
+	
+}
+
+#restaurantarea {
+	flex-wrap: flex;
+	padding: 2%;
+	display: flex;
+  justify-content: space-between;
+}
+
+.restaurantarea {
+
+}
+
+.restaurant1 {
+	border: red dotted 1px;
+	height: 40vh;
+    width: 40%;
+	display: flex;
+  justify-content: space-between;
+}
+	
+
+
+.restaurant2 {
+	border: red dotted 1px;
+	height: 40vh;
+    width: 40%;
+	display: flex;
+  justify-content: space-between;
+
+}
