@@ -43,6 +43,7 @@ nav {
 	justify-content: space-between;
 	padding: 4vh 2vh;
 	background-color: #ffffff;
+	align-items: stretch;
 	
 	
 }
@@ -63,7 +64,15 @@ nav li {
 nav ul {
   list-style-type: none;
   margin: 0;
+  align-items: stretch;
   padding: 0;
+}
+
+nav ul a {
+	display: block;
+	width: 100%;
+	margin: 0 0 0.25em;
+	padding: 0.6rem;
 }
 
 #showcase {
@@ -97,11 +106,14 @@ nav ul {
 
 .info-text {
 	text-align: center;
-	padding: 10vh 20vh;
+	padding: 2em 0;
+	width: 80vw;
+	font-size: 1,5em;
 	
 }
 
 #restaurantarea {
+	/*width: 80vw;*/
 	flex-wrap: flex;
 	padding: 2%;
 	display: flex;
