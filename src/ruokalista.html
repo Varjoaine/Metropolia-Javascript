@@ -2,8 +2,6 @@
 <html>
 <head>
 <link rel="stylesheet" href="css/style.css" type="text/css">
-<script type="text/javascript" src="jquery-3.3.1.js"></script>
-<script src="src/ruokalista.js"></script>
 <meta charset="UTF-8">
 <title>Untitled Document</title>
 </head>
@@ -45,20 +43,24 @@
 	<div id="restaurantarea">
 		<div class="restaurant1" >
 			Ruokalista1
-			<script>
-
-			import LunchMenu from 'src/lista.json';
-			// Test
-			console.log('lunch menu object', LunchMenu);
-			  </script>
+			<h2>Sodexo</h2>
+			<ul id="sodexo">
+			</ul>
 		</div>
 		<div class="restaurant2">
 			Ruokalista2
-			<script>
-			document.write(coursesEn)
-		</script>
+			<h2>Fazer</h2>
+			<ul id="fazer">
+				<li>this</li>
+				<li>is</li>
+				<li>just</li>
+				<li>a placeholder</li>
+			  </ul>
 		</div>
 	</div>
+	<button id="switch-lang">Switch lang</button>
+	<button id="sort-menu">Sort menu</button>
+	<button id="pick-dish">Pick a dish</button>
 		
 </main>
 <footer>Alapalkki</footer>	

@@ -1,61 +1,78 @@
-const coursesEn = ["Hamburger, cream sauce and poiled potates",
-"Goan style fish curry and whole grain rice",
-"Vegan Chili sin carne and whole grain rice",
-"Broccoli puree soup, side salad with two napas",
-"Lunch baguette with BBQ-turkey filling",
-"Cheese / Chicken / Vege / Halloum burger and french fries"];
-
-const coursesFi = ["Jauhelihapihvi, ruskeaa kermakastiketta ja keitettyä perunaa",
-"Goalaista kalacurrya ja täysjyväriisiä",
-"vegaani Chili sin carne ja täysjyväriisi",
-"Parsakeittoa,lisäkesalaatti kahdella napaksella",
-"Lunch baguette with BBQ-turkey filling",
-"Juusto / Kana / Kasvis / Halloumi burgeri ja ranskalaiset"];
-
+import SodexoData from './modules/sodexo-data';
+import {getParsedMenuFazer} from './modules/fazer-data';
 
 let lang = 'fi';
-let menu = coursesFi;
 
-/** lajittele 
-*
-*   @param {Array} courses - Menu Array
-*   
-*/
-
-const sortCourses = (courses, order ='asc') => {
-    let sortedMenu = courses.sort();
-    if (order === 'desc') {    
-    }
-    return sortedMenu;
-
+/**
+ * Sorts an array alphapetically
+ *
+ * @param {Array} courses - Menu array
+ * @param {Array} order - 'asc' or 'desc'
+ * @returns {Array} sorted menu
+ */
+const sortCourses = (courses, order = 'asc') => {
+  let sortedMenu = courses.sort();
+  if (order === 'desc') {
+    sortedMenu.reverse();
+  }
+  return sortedMenu;
 };
 
+/**
+ * Renders html list items from menu data
+ *
+ * @param {string} restaurant - name of the selector/restaurant
+ * @param {Array} menu - menu data
+ */
+const renderMenu = (restaurant, menu) => {
+  const list = document.querySelector('#' + restaurant);
+  list.innerHTML = '';
+  for (const item of menu) {
+    const listItem = document.createElement('li');
+    listItem.textContent = item;
+    list.appendChild(listItem);
+  }
+};
 
-const switchLanguage = () =>  {
-    const list = document 
+/**
+ * Picks a random course item from an array
+ *
+ * @param {Array} courses
+ * @returns {string} course
+ */
+const pickRandomCourse = courses => {
+  const randomIndex = Math.floor(Math.random() * courses.length);
+  return courses[randomIndex];
+};
+const displayRandomCourse = () => {
+  // TODO: add support for Fazer menu and lang
+  alert(pickRandomCourse(SodexoData.coursesFi));
+};
 
-}
+const switchLanguage = () => {
+  if (lang === 'fi') {
+    lang = 'en';
+    renderMenu('sodexo', SodexoData.coursesEn);
+    renderMenu('fazer', getParsedMenuFazer('en'));
+  } else {
+    lang = 'fi';
+    renderMenu('sodexo', SodexoData.coursesFi);
+    renderMenu('fazer', getParsedMenuFazer('fi'));
+  }
+};
 
 const renderSortedMenu = () => {
-sortCourses(menu);
-renderMenu();
-
-}
-
-const pickRandomCourse = courses => {
-    const randomIndex = Math.floor(Math.random) * courses.length);
-    return courses[randomIndex];
-
+  // TODO: fix lang issue
+  renderMenu('sodexo', sortCourses(SodexoData.coursesFi));
+  renderMenu('fazer', sortCourses(getParsedMenuFazer('fi')));
 };
 
-const renderMenu = () => {
-    const list = document.querySelector('#sodexo');
-    list.innerHTML = '';
-    for (const item of menu) {
-        const listItem = document.createElement('li');
-        listItem.textContent = item;
+const init = () => {
+  renderMenu('sodexo', SodexoData.coursesFi);
+  renderMenu('fazer', getParsedMenuFazer('fi'));
+  document.querySelector('#switch-lang').addEventListener('click', switchLanguage);
+  document.querySelector('#sort-menu').addEventListener('click', renderSortedMenu);
+  document.querySelector('#pick-dish').addEventListener('click', displayRandomCourse);
+};
 
-
-}
-
-}
+init();
