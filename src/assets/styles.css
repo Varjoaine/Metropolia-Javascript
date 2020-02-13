@@ -1,3 +1,157 @@
+@charset "UTF-8";
+/* CSS Document */
+
+* {
+	
+	box-sizing: border-box;
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0;
+
+}
+
 body {
-  margin: 10%;
+  font-family: Gotham, 'Helvetica Neue', Helvetica, Arial, 'sans-serif';
+	
+}
+
+h2 {
+	text-align: center;
+	flex: auto;
+
+}
+
+ul li {
+	list-style-type: none;
+
+}
+
+:root {
+	--main-bg-color: rgb(147,10,199);
+	
+}
+
+#triangle {
+	
+	width: 0;
+	height: 0;
+	border-bottom: 30vh solid #00E754;
+	/*border-right: 100em solid transparent;*/
+	border-right: 10vw solid transparent;	
+	/*border-left: 10vh solid violet;*/
+	
+	margin:0;
+	margin-bottom: 100em;
+	
+}
+
+nav {
+	/*width: 100%;*/
+	display:flex;
+	position:sticky;
+	top:0;
+	justify-content: space-between;
+	padding: 4vh 2vh;
+	background-color: #ffffff;
+	align-items: stretch;
+	
+	
+}
+
+a {
+   text-decoration: none;
+}
+
+nav li {
+	display: inline-block;
+	padding-right: 10vh;
+	padding-left: 5vh;
+	font-size:20px;
+	
+	
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  align-items: stretch;
+  padding: 0;
+}
+
+nav ul a {
+	display: block;
+	width: 100%;
+	margin: 0 0 0.25em;
+	padding: 0.6rem;
+}
+
+#showcase {
+	display: flex;
+	height: 30vh;
+	
+}
+
+#showcase-logoarea {
+	flex:4;
+	display:flex;
+	flex-direction:column;
+	justify-content: center;
+	align-item: center;
+	background-color: #00E754;
+	text-align: center;
+	color: #ffffff;
+}
+
+#showcase-imgarea {
+	flex:6;
+	background: url("img/black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg") no-repeat center center/cover;
+}
+
+.info-area {
+	display-flex:flex;
+	justify-content: center;
+	align-item: center;
+	
+}
+
+.info-text {
+	text-align: center;
+	padding: 2em 0;
+	/*width: 80vw;*/
+	font-size: 1,5em;
+	
+}
+
+#restaurantarea {
+	/*width: 80vw;*/
+	flex-wrap: flex;
+	padding: 2%;
+	display: flex;
+  justify-content: space-between;
+}
+
+.restaurantarea {
+
+}
+
+.restaurant1 {
+	border: red dotted 1px;
+	height: 100%;
+    width: 40%;
+	display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+	
+
+
+.restaurant2 {
+	border: red dotted 1px;
+	height: 100%;
+    width: 40%;
+	display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
 }

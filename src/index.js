@@ -1,82 +1,78 @@
-console.log('Jeijy');
- 
-const minLimit = 1, maxLimit = 100;
+import SodexoData from './modules/sodexo-data';
+import {getParsedMenuFazer} from './modules/fazer-data';
 
-let randomNumber = Math.floor(Math.random() * maxLimit) + minLimit;
-console.log('random number', randomNumber);
+let lang = 'fi';
 
-const guesses = document.querySelector('.guesses');
-const lastResult = document.querySelector('.lastResult');
-const lowOrHi = document.querySelector('.lowOrHi');
-
-const guessSubmit = document.querySelector('.guessSubmit');
-const guessField = document.querySelector('.guessField');
-const resultText = document.querySelector('.resultText');
-
-let guessCount = 1;
-let startTime;
-let resetButton;
-guessField.focus();
-
-
-function checkGuess() {
-  let userGuess = Number(guessField.value);
-  if (guessCount === 1) {
-    guesses.textContent = 'Previous guesses: ';
+/**
+ * Sorts an array alphapetically
+ *
+ * @param {Array} courses - Menu array
+ * @param {Array} order - 'asc' or 'desc'
+ * @returns {Array} sorted menu
+ */
+const sortCourses = (courses, order = 'asc') => {
+  let sortedMenu = courses.sort();
+  if (order === 'desc') {
+    sortedMenu.reverse();
   }
-  guesses.textContent += userGuess + ' ';
- 
-  if (userGuess === randomNumber) {
-    lastResult.textContent = 'Congratulations! You got it right!';
-    lastResult.style.backgroundColor = 'green';
-    lowOrHi.textContent = '';
-    setGameOver();
-  } else if (guessCount === 10) {
-    lastResult.textContent = '!!!GAME OVER!!!';
-    setGameOver();
+  return sortedMenu;
+};
+
+/**
+ * Renders html list items from menu data
+ *
+ * @param {string} restaurant - name of the selector/restaurant
+ * @param {Array} menu - menu data
+ */
+const renderMenu = (restaurant, menu) => {
+  const list = document.querySelector('#' + restaurant);
+  list.innerHTML = '';
+  for (const item of menu) {
+    const listItem = document.createElement('li');
+    listItem.textContent = item;
+    list.appendChild(listItem);
+  }
+};
+
+/**
+ * Picks a random course item from an array
+ *
+ * @param {Array} courses
+ * @returns {string} course
+ */
+const pickRandomCourse = courses => {
+  const randomIndex = Math.floor(Math.random() * courses.length);
+  return courses[randomIndex];
+};
+const displayRandomCourse = () => {
+  // TODO: add support for Fazer menu and lang
+  alert(pickRandomCourse(SodexoData.coursesFi));
+};
+
+const switchLanguage = () => {
+  if (lang === 'fi') {
+    lang = 'en';
+    renderMenu('sodexo', SodexoData.coursesEn);
+    renderMenu('fazer', getParsedMenuFazer('en'));
   } else {
-    lastResult.textContent = 'Wrong!';
-    lastResult.style.backgroundColor = 'red';
-    if(userGuess < randomNumber) {
-      lowOrHi.textContent = 'Last guess was too low!';
-    } else if(userGuess > randomNumber) {
-      lowOrHi.textContent = 'Last guess was too high!';
-    }
+    lang = 'fi';
+    renderMenu('sodexo', SodexoData.coursesFi);
+    renderMenu('fazer', getParsedMenuFazer('fi'));
   }
- 
-  guessCount++;
-  guessField.value = '';
-  guessField.focus();
-}
+};
 
-  guessSubmit.addEventListener('click', checkGuess);
+const renderSortedMenu = () => {
+  // TODO: fix lang issue
+  renderMenu('sodexo', sortCourses(SodexoData.coursesFi));
+  renderMenu('fazer', sortCourses(getParsedMenuFazer('fi')));
+};
 
-  function setGameOver() {
-    guessField.disabled = true;
-    guessSubmit.disabled = true;
-    resetButton = document.createElement('button');
-    resetButton.textContent = 'Start new game';
-    document.body.appendChild(resetButton);
-    resetButton.addEventListener('click', resetGame);
-  }
+const init = () => {
+  renderMenu('sodexo', SodexoData.coursesFi);
+  renderMenu('fazer', getParsedMenuFazer('fi'));
+  document.querySelector('#switch-lang').addEventListener('click', switchLanguage);
+  document.querySelector('#sort-menu').addEventListener('click', renderSortedMenu);
+  document.querySelector('#pick-dish').addEventListener('click', displayRandomCourse);
+};
 
-  function resetGame() {
-    guessCount = 1;
-  
-    const resetParas = document.querySelectorAll('.resultParas p');
-    for (let i = 0 ; i < resetParas.length ; i++) {
-      resetParas[i].textContent = '';
-    }
-  
-    resetButton.parentNode.removeChild(resetButton);
-  
-    guessField.disabled = false;
-    guessSubmit.disabled = false;
-    guessField.value = '';
-    guessField.focus();
-  
-    lastResult.style.backgroundColor = 'white';
-  
-    randomNumber = Math.floor(Math.random() * 100) + 1;
-  }
-
+init();

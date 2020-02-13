@@ -16,6 +16,11 @@ body {
 }
 
 
+.h2 {
+	text-align: center;
+
+}
+
 :root {
 	--main-bg-color: rgb(147,10,199);
 	
